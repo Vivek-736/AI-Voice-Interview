@@ -5,14 +5,14 @@ import { Button } from "@/components/ui/button";
 async function Home() {
   return (
     <>
-      <section className="card-cta bg-gradient-to-br from-slate-900 to-blue-700 via-indigo-800">
+      <section className="card-cta bg-gradient-to-br from-blue-900 to-black via-slate-900 border-2 border-blue-600">
         <div className="flex flex-col gap-6 max-w-lg">
           <h2>Get Interview-Ready with AI-Powered Preparation & Feedback</h2>
           <p className="text-lg">
             Practice real interview questions & get instant feedback
           </p>
 
-          <Button asChild className="btn-primary max-sm:w-full">
+          <Button asChild variant={"secondary"} className="w-fit !bg-purple-500 !text-white hover:!bg-purple-500/80 !rounded-full !font-bold px-5 cursor-pointer min-h-10 max-sm:w-full">
             <Link href="/interview">Start an Interview</Link>
           </Button>
         </div>
