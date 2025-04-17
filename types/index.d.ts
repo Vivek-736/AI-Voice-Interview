@@ -47,15 +47,6 @@ interface Feedback {
     createdAt?: string;
   }
   
-  interface AgentProps {
-    userName: string;
-    userId?: string;
-    interviewId?: string;
-    feedbackId?: string;
-    type: "generate" | "interview";
-    questions?: string[];
-  }
-  
   interface RouteParams {
     params: Promise<Record<string, string>>;
     searchParams: Promise<Record<string, string>>;
@@ -71,20 +62,6 @@ interface Feedback {
     limit?: number;
   }
   
-  interface SignInParams {
-    email: string;
-    idToken: string;
-  }
-  
-  interface SignUpParams {
-    uid: string;
-    name: string;
-    email: string;
-    password: string;
-  }
-  
-  type FormType = "sign-in" | "sign-up";
-  
   interface InterviewFormProps {
     interviewId: string;
     role: string;
@@ -92,8 +69,4 @@ interface Feedback {
     type: string;
     techstack: string[];
     amount: number;
-  }
-  
-  interface TechIconProps {
-    techStack: string[];
   }

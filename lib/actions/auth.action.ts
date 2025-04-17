@@ -7,6 +7,18 @@ import { cookies } from "next/headers";
 // Session duration (1 week)
 const SESSION_DURATION = 60 * 60 * 24 * 7;
 
+interface SignInParams {
+  email: string;
+  idToken: string;
+}
+
+interface SignUpParams {
+  uid: string;
+  name: string;
+  email: string;
+  password: string;
+}
+
 // Set session cookie
 export async function setSessionCookie(idToken: string) {
   const cookieStore = await cookies();
