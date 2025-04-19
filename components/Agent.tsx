@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -73,7 +72,7 @@ const Agent = ({ userName, userId, type }: AgentProps) => {
     if (callStatus === CallStatus.FINISHED) {
       router.push("/");
     }
-  }, [messages, CallStatus, type, userId]);
+  }, [callStatus, router, type]);
 
   const handleCall = async () => {
     setCallStatus(CallStatus.CONNECTING);
