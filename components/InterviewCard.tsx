@@ -67,7 +67,7 @@ const InterviewCard = async ({
 
             <div className="flex flex-row gap-2 items-center">
               <Image src="/star.png" width={22} height={22} alt="star" />
-              <p>{"---"}/100</p>
+              <p>{"--- "}/ 100</p>
             </div>
           </div>
 
