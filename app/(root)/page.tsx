@@ -90,6 +90,12 @@ async function Home() {
           )}
         </div>
       </section>
+
+      <footer className="mt-12 py-6 bg-gradient-to-t from-slate-900 to-transparent text-center text-neutral-300">
+        <p className="text-sm font-medium">
+          Engraved with 💖 by Vivek
+        </p>
+      </footer>
     </>
   );
 }
