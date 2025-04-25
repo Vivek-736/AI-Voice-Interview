@@ -61,3 +61,21 @@ interface InterviewFormProps {
   techstack: string[];
   amount: number;
 }
+
+interface AgentProps {
+  userName: string;
+  userId?: string;
+  interviewId?: string;
+  feedbackId?: string;
+  type: "generate" | "interview";
+  questions?: string[];
+}
+
+interface InterviewCardProps {
+  id?: string;
+  userId?: string;
+  role: string;
+  type: string;
+  techstack: string[];
+  createdAt?: string;
+}

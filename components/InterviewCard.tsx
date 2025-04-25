@@ -1,17 +1,10 @@
+import dayjs from "dayjs";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import DisplayTechIcons from "./DisplayTechIcons";
 import { cn, getRandomInterviewCover } from "@/lib/utils";
-
-interface InterviewCardProps {
-  id?: string;
-  userId?: string;
-  role: string;
-  type: string;
-  techstack: string[];
-  createdAt?: string;
-}
+import { getFeedbackByInterviewId } from "@/lib/actions/general.action";
 
 const InterviewCard = async ({
   id,
@@ -21,15 +14,25 @@ const InterviewCard = async ({
   techstack,
   createdAt,
 }: InterviewCardProps) => {
+  const feedback =
+    userId && id
+      ? await getFeedbackByInterviewId({
+          interviewId: id,
+          userId,
+        })
+      : null;
 
   const normalizedType = /mix/gi.test(type) ? "Mixed" : type;
-
   const badgeColor =
     {
       Behavioral: "bg-light-400",
       Mixed: "bg-light-600",
       Technical: "bg-light-800",
     }[normalizedType] || "bg-light-600";
+
+  const formattedDate = dayjs(
+    feedback?.createdAt || createdAt || Date.now()
+  ).format("MMM D, YYYY");
 
   return (
     <div className="card-border w-[360px] max-sm:w-full min-h-96">
@@ -62,17 +65,18 @@ const InterviewCard = async ({
                 height={22}
                 alt="calendar"
               />
-              <p>April 19, 2025</p>
+              <p>{formattedDate}</p>
             </div>
 
             <div className="flex flex-row gap-2 items-center">
               <Image src="/star.png" width={22} height={22} alt="star" />
-              <p>{"--- "}/ 100</p>
+              <p>{feedback?.totalScore || "--- "}/ 100</p>
             </div>
           </div>
 
           <p className="line-clamp-2 mt-5">
-            You are yet to take this interview and get the grade for it
+            {feedback?.finalAssessment ||
+              "You haven't taken this interview yet. Take it now to improve your skills."}
           </p>
         </div>
 
@@ -81,9 +85,13 @@ const InterviewCard = async ({
 
           <Button className="btn-primary">
             <Link
-              href={`/interview/${id}`}
+              href={
+                feedback
+                  ? `/interview/${id}/feedback`
+                  : `/interview/${id}`
+              }
             >
-              View Interview
+              {feedback ? "Check Feedback" : "View Interview"}
             </Link>
           </Button>
         </div>
